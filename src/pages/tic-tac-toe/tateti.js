@@ -5,10 +5,26 @@ import './tateti.css';
 const body = document.body;
 const app = document.querySelector('#app');
 export const win = false;
+let player = 'x';
+
+export const setPlayer = (event) => {
+  event.target.classList.add('active');
+  player = event.target.id;
+  const buttons = document.querySelectorAll('.select');
+  for (const button of buttons) {
+    button.classList.remove('select');
+    button.removeEventListener('click', setPlayer);
+  }
+};
 
 export const addSymbol = (line, column) => {
   if (board[line][column] === '') {
-    board[line][column] = 'a';
+    board[line][column] = player;
+    if (player === 'x') {
+      player = 'o';
+    } else {
+      player = 'x';
+    }
     console.log(board);
     fillBoard(board);
   }

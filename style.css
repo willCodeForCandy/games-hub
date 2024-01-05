@@ -4,6 +4,19 @@
   --bg-color-primary: #2e294e;
   --text-color-primary: #eadeda;
   --highlight-color: #ffd400;
+
+  /* Spacings */
+  --spacing-xl: 50px;
+  --spacing-lg: 30px;
+  --spacing-md: 20px;
+  --spacing-sm: 10px;
+  --spacing-xs: 5px;
+
+  /* Border Radius */
+  --radius-sm: 5px;
+  --radius-md: 15px;
+  --radius-lg: 20px;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

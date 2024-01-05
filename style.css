@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@200;400;500;600;700;800;900&family=Rubik+Doodle+Shadow&display=swap');
+:root {
+  /* COLORS */
+  --bg-color-primary: #2e294e;
+  --text-color-primary: #eadeda;
+  --highlight-color: #ffd400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat Alternates', sans-serif;
+  color: var(--text-color-primary);
+  background-color: var(--bg-color-primary);
+}
+
+#app {
+  font-family: 'Rubik Doodle Shadow', sans-serif;
+  font-size: 2rem;
+  width: 100%;
+  min-height: 100svh;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 80px;
+}

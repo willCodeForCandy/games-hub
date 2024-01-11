@@ -13,7 +13,8 @@ const piezas = [
 const doblePiezas = piezas.concat(piezas);
 const piezasDesordenadas = doblePiezas.sort(() => Math.random() - 0.5);
 let flippedCards = [];
-
+let tarjetas = [];
+let score = 0;
 export const memotest = () => {
   const app = document.querySelector('#app');
   app.innerHTML = '';
@@ -21,15 +22,23 @@ export const memotest = () => {
   const puntaje = document.createElement('h2');
   const tablero = document.createElement('div');
   tablero.id = 'memotest';
-  puntaje.innerText = 'Puntaje: 0';
+  puntaje.innerText = `Puntaje: ${score}`;
 
   for (const imagen of piezasDesordenadas) {
     const contenedor = document.createElement('div');
     contenedor.classList.add('tarjeta-memotest');
+    const flipCardInner = document.createElement('div');
+    flipCardInner.classList.add('flip-card-inner');
+    const cardFront = document.createElement('div');
+    cardFront.classList.add('card-front');
+    const cardBack = document.createElement('div');
+    cardBack.classList.add('card-back');
     const img = document.createElement('img');
     img.src = imagen;
-    img.addEventListener('click', flipCard);
-    contenedor.append(img);
+    contenedor.addEventListener('click', flipCard);
+    cardBack.append(img);
+    flipCardInner.append(cardFront, cardBack);
+    contenedor.append(flipCardInner);
     tablero.append(contenedor);
   }
 
@@ -38,27 +47,45 @@ export const memotest = () => {
 };
 
 const flipCard = (e) => {
-  const clickedCard = e.target;
-
+  const clickedCard = e.target.parentElement.querySelector('img');
+  const tarjetaMemotest = e.target.parentElement.parentElement;
   if (clickedCard === flippedCards[0]) return;
-  console.log(flippedCards);
-  e.target.classList.add('flipped');
+  tarjetaMemotest.classList.add('flipped');
 
   if (flippedCards.length === 0) {
     flippedCards.push(clickedCard);
-    console.log(flippedCards);
+    tarjetas.push(tarjetaMemotest);
   } else {
     flippedCards.push(clickedCard);
+    tarjetas.push(tarjetaMemotest);
     console.log(flippedCards[0].src);
     if (flippedCards[0].src === flippedCards[1].src) {
       setTimeout(() => {
-        flippedCards.forEach((card) => card.classList.add('matched'));
+        tarjetas.forEach((card) => card.classList.add('matched'));
         flippedCards = [];
+        tarjetas = [];
+        score++;
+        document.querySelector('h2').innerText = `Puntaje: ${score}`;
+        if (score === 8) {
+          const app = document.querySelector('#app');
+          const winBanner = document.createElement('div');
+          const winMessage = document.createElement('h3');
+          winMessage.innerText = '¡Ganaste!';
+          winBanner.classList.add('win-banner');
+          winBanner.append(winMessage);
+          app.append(winBanner);
+          setTimeout(() => {
+            score = 0;
+            memotest();
+            winBanner.remove();
+          }, 3000);
+        }
       }, 1000);
     } else {
       setTimeout(() => {
-        flippedCards.forEach((card) => card.classList.remove('flipped'));
+        tarjetas.forEach((card) => card.classList.remove('flipped'));
         flippedCards = [];
+        tarjetas = [];
       }, 1000);
     }
   }

@@ -5,3 +5,7 @@ header nav ul {
   font-size: 30px;
   font-weight: 600;
 }
+
+header nav ul li {
+  cursor: pointer;
+}

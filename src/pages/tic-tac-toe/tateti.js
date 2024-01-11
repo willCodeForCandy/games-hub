@@ -1,7 +1,7 @@
 import { fillBoard } from '../../components/tateti/board/board';
 import { scoreBoard } from '../../components/tateti/scoreBoard/scoreBoard';
 import { players } from '../../data/tateti/players';
-import { winCondition } from '../../functions/win';
+import { empate, winCondition } from '../../functions/win';
 import './tateti.css';
 
 const app = document.querySelector('#app');
@@ -57,7 +57,10 @@ export const addSymbol = (line, column) => {
           ['', '', '']
         ];
         fillBoard(board);
+      } else if (empate(board)) {
+        console.log('EMPATE');
       } else {
+        console.log('empate:', empate(board));
         activePlayer === 'x' ? (activePlayer = 'o') : (activePlayer = 'x');
         const buttons = document.querySelectorAll('.players > div');
         for (const button of buttons) {

@@ -30,3 +30,15 @@ export const winCondition = (board) => {
   }
   return win;
 };
+
+export const empate = (board) => {
+  let full = 0;
+  for (const line of board) {
+    for (const cell of line) {
+      if (cell !== '') {
+        full++;
+      }
+    }
+  }
+  return full === 9 ? true : false;
+};

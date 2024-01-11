@@ -1,0 +1,7 @@
+header nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  padding: var(--spacing-lg);
+  font-size: 30px;
+  font-weight: 600;
+}

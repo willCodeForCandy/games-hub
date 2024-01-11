@@ -26,6 +26,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 body {
@@ -38,7 +39,7 @@ body {
   font-family: 'Rubik Doodle Shadow', sans-serif;
   font-size: 2rem;
   width: 100%;
-  min-height: 100svh;
+  height: 100svh;
   padding: 2%;
   display: flex;
   flex-direction: column;

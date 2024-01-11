@@ -1,0 +1,15 @@
+#memotest {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+.tarjeta-memotest {
+  background-color: grey;
+  padding: var(--spacing-md);
+}
+.tarjeta-memotest img {
+  width: 100%;
+}

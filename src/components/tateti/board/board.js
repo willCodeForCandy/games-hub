@@ -1,4 +1,4 @@
-import { addSymbol } from '../../pages/tic-tac-toe/tateti';
+import { addSymbol } from '../../../pages/tic-tac-toe/tateti';
 import './board.css';
 
 export const fillBoard = (board) => {

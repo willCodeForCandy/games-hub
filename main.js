@@ -1,7 +1,4 @@
-import { fillBoard } from './src/components/board/board';
-import { board } from './src/data/board';
-import { makeTaTeTi } from './src/pages/tic-tac-toe/tateti';
-import './style.css';
+import { header } from './src/components/header/header';
 
-makeTaTeTi(board);
-fillBoard(board);
+import './style.css';
+header();

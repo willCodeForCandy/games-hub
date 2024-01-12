@@ -18,10 +18,13 @@ export const makeTaTeTi = () => {
   app.innerHTML = '';
   const board$$ = document.createElement('div');
   board$$.id = 'board';
-  const title = document.createElement('h1');
-  title.textContent = 'Ta-Te-Ti';
-  app.append(title, scoreBoard(players), board$$);
+  app.append(scoreBoard(players), board$$);
   document.body.append(app);
+  board = [
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', '']
+  ];
 };
 
 // Función para que el usuario elija si juga con la X o el O. Se usa en scoreBoard.js, que es el componente donde está el puntaje y se muestra quién está jugando en ese momento
@@ -43,25 +46,46 @@ export const addSymbol = (line, column) => {
 
     fillBoard(board); //pinta el tablero con la nueva jugada agregada
     win = winCondition(board); //chequea si esa jugada gana la partida
-    console.log(win);
+
+    const playerScoreBoard = document.querySelector(`#${activePlayer} > h2`);
     setTimeout(() => {
       // espero 100ms para dar tiempo a que cambie el tablero. De lo contrario la alerta salta antes de que se vea que pasó
       if (win) {
-        const playerScoreBoard = document.querySelector(
-          `#${activePlayer} > h2`
-        );
-        playerScoreBoard.innerText = Number(playerScoreBoard.innerText) + 1;
-        board = [
-          ['', '', ''],
-          ['', '', ''],
-          ['', '', '']
-        ];
-        fillBoard(board);
+        const winBanner = document.createElement('div');
+        const winMessage = document.createElement('h3');
+        winMessage.innerText = `¡Ganó ${activePlayer}!`;
+        winBanner.classList.add('win-banner');
+        winBanner.append(winMessage);
+        app.append(winBanner);
+        setTimeout(() => {
+          playerScoreBoard.innerText = Number(playerScoreBoard.innerText) + 1;
+          board = [
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', '']
+          ];
+          fillBoard(board);
+          winBanner.remove();
+        }, 1000);
       } else if (empate(board)) {
-        console.log('EMPATE');
+        const tieBanner = document.createElement('div');
+        const tieMessage = document.createElement('h3');
+        tieMessage.innerText = '¡Empate!';
+        tieBanner.classList.add('win-banner');
+        tieBanner.append(tieMessage);
+        app.append(tieBanner);
+        setTimeout(() => {
+          board = [
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', '']
+          ];
+          fillBoard(board);
+          tieBanner.remove();
+        }, 1000);
       } else {
         console.log('empate:', empate(board));
-        activePlayer === 'x' ? (activePlayer = 'o') : (activePlayer = 'x');
+        activePlayer = activePlayer === 'x' ? 'o' : 'x';
         const buttons = document.querySelectorAll('.players > div');
         for (const button of buttons) {
           button.classList.toggle('active'); //cambia la clase para que se muestre qué jugador está activo

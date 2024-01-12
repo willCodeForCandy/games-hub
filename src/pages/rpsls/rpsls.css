@@ -1,0 +1,40 @@
+#rpsls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  font-family: 'Montserrat Alternates', sans-serif;
+  justify-content: center;
+}
+
+#rpsls > div > h2 {
+  text-align: start;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 36px;
+}
+
+#rpsls > div > ul {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
+#rpsls .jugador .icon {
+  cursor: pointer;
+
+  height: fit-content;
+}
+
+#rpsls .jugador .icon:hover {
+  border-bottom: 1px solid white;
+}
+
+#rpsls article {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  text-align: justify;
+}
+#rpsls article img {
+  max-height: 200px;
+}

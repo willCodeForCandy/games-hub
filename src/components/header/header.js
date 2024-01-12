@@ -1,4 +1,5 @@
 import { memotest } from '../../pages/memotest/memotest';
+import { rpsls } from '../../pages/rpsls/rpsls';
 import { board, makeTaTeTi } from '../../pages/tic-tac-toe/tateti';
 import { fillBoard } from '../tateti/board/board';
 import './header.css';
@@ -14,16 +15,28 @@ export const header = () => {
   limemotest.innerText = 'Memotest';
   lirpsls.innerText = '🪨📄✂️🦎🖖';
   liTateti.addEventListener('click', () => {
+    liTateti.style.textDecoration = 'underline';
+    limemotest.style.textDecoration = 'none';
+    lirpsls.style.textDecoration = 'none';
     makeTaTeTi();
     fillBoard(board);
     const choosePrompt = document.createElement('h2');
     choosePrompt.innerText = 'Elige si juegas con X o con O';
     choosePrompt.classList.add('eleccion');
-    document
-      .querySelector('#app')
-      .insertBefore(choosePrompt, document.querySelector('.players'));
+    document.querySelector('#board').prepend(choosePrompt);
   });
-  limemotest.addEventListener('click', memotest);
+  limemotest.addEventListener('click', () => {
+    liTateti.style.textDecoration = 'none';
+    limemotest.style.textDecoration = 'underline';
+    lirpsls.style.textDecoration = 'none';
+    memotest();
+  });
+  lirpsls.addEventListener('click', () => {
+    liTateti.style.textDecoration = 'none';
+    limemotest.style.textDecoration = 'none';
+    lirpsls.style.textDecoration = 'underline';
+    rpsls();
+  });
   ul.append(liTateti, limemotest, lirpsls);
   nav.append(ul);
   header.append(nav);

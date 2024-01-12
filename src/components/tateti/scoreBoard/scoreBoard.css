@@ -29,3 +29,28 @@
 .players > div.active {
   outline: 3px solid var(--highlight-color);
 }
+.eleccion {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 36px;
+  position: absolute;
+  top: 50%;
+  margin-top: -100px;
+  left: 50%;
+  margin-left: -150px;
+  width: 300px;
+  height: 200px;
+  background-color: #eadedae3;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-shadow: 10px 10px 23px -12px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 23px -12px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 23px -12px rgba(0, 0, 0, 0.75);
+}
+
+@media screen and (max-width: 800px) {
+  .players {
+    width: 80%;
+  }
+}

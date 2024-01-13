@@ -11,8 +11,8 @@
   font-family: 'Courier New', Courier, monospace;
   font-size: 36px;
 }
-
-#rpsls > div > ul {
+/* TODO: REVISAR!!! */
+/* #rpsls > div > div {
   display: flex;
   gap: var(--spacing-md);
   justify-content: center;
@@ -20,15 +20,29 @@
 
 #rpsls .jugador .icon {
   cursor: pointer;
-
   height: fit-content;
+  border: none;
+  position: relative;
 }
-
 #rpsls .jugador .icon:hover {
-  border-bottom: 1px solid white;
+  border-bottom: 5px solid #ffffff;
 }
+#rpsls .jugador .icon::after {
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 5px;
+  left: 50%;
+  bottom: 0;
+  background-color: white;
+  transition: all ease-in-out 0.2s;
+}
+#rpsls .jugador .icon:hover::after {
+  width: 100%;
+  left: 0;
+} */
 
-#rpsls article {
+#rpsls article > div {
   font-size: 24px;
   display: flex;
   align-items: center;
@@ -37,4 +51,10 @@
 }
 #rpsls article img {
   max-height: 200px;
+}
+
+#rpsls article h3 {
+  border-bottom: 1px solid var(--text-color-primary);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }

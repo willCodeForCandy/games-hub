@@ -1,5 +1,6 @@
 import { fillBoard } from '../../components/tateti/board/board';
 import { scoreBoard } from '../../components/tateti/scoreBoard/scoreBoard';
+import { winBanner } from '../../components/winBanner/winBanner';
 import { players } from '../../data/tateti/players';
 import { empate, winCondition } from '../../functions/win';
 import './tateti.css';
@@ -51,12 +52,7 @@ export const addSymbol = (line, column) => {
     setTimeout(() => {
       // espero 100ms para dar tiempo a que cambie el tablero. De lo contrario la alerta salta antes de que se vea que pasó
       if (win) {
-        const winBanner = document.createElement('div');
-        const winMessage = document.createElement('h3');
-        winMessage.innerText = `¡Ganó ${activePlayer}!`;
-        winBanner.classList.add('win-banner');
-        winBanner.append(winMessage);
-        app.append(winBanner);
+        winBanner(app, `¡Ganó ${activePlayer}!`);
         setTimeout(() => {
           playerScoreBoard.innerText = Number(playerScoreBoard.innerText) + 1;
           board = [
@@ -65,15 +61,10 @@ export const addSymbol = (line, column) => {
             ['', '', '']
           ];
           fillBoard(board);
-          winBanner.remove();
+          // document.querySelector('.win-banner').remove();
         }, 1000);
       } else if (empate(board)) {
-        const tieBanner = document.createElement('div');
-        const tieMessage = document.createElement('h3');
-        tieMessage.innerText = '¡Empate!';
-        tieBanner.classList.add('win-banner');
-        tieBanner.append(tieMessage);
-        app.append(tieBanner);
+        winBanner(app, `¡Empate!`);
         setTimeout(() => {
           board = [
             ['', '', ''],
@@ -81,7 +72,7 @@ export const addSymbol = (line, column) => {
             ['', '', '']
           ];
           fillBoard(board);
-          tieBanner.remove();
+          // document.querySelector('.win-banner').remove();
         }, 1000);
       } else {
         console.log('empate:', empate(board));

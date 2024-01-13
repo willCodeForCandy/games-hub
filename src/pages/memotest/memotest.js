@@ -1,3 +1,4 @@
+import { winBanner } from '../../components/winBanner/winBanner';
 import './memotest.css';
 
 const piezas = [
@@ -76,17 +77,11 @@ const flipCard = (e) => {
         lockedBoard = false;
         if (score === 8) {
           const app = document.querySelector('#app');
-          const winBanner = document.createElement('div');
-          const winMessage = document.createElement('h3');
-          winMessage.innerText = '¡Ganaste!';
-          winBanner.classList.add('win-banner');
-          winBanner.append(winMessage);
-          app.append(winBanner);
+          winBanner(app, '¡Ganaste!');
           setTimeout(() => {
             score = 0;
             memotest();
-            winBanner.remove();
-          }, 3000);
+          }, 1500);
         }
       }, 1000);
     } else {

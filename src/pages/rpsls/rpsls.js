@@ -1,3 +1,4 @@
+import { decorateHeader } from '../../components/header/header';
 import { winBanner } from '../../components/winBanner/winBanner';
 import { computerChoice } from '../../functions/computerchoice';
 import './rpsls.css';
@@ -31,7 +32,8 @@ const choices = [
 let scoreUser = 0;
 let scorePC = 0;
 
-export const rpsls = () => {
+export const rpsls = (e) => {
+  decorateHeader(e);
   const app = document.querySelector('#app');
   app.innerHTML = '';
   const rpsls = document.createElement('section');
@@ -54,14 +56,17 @@ export const rpsls = () => {
   let paintIcons = (parentNode) => {
     for (const hand of choices) {
       const icon = document.createElement('img');
+      const iconContainer = document.createElement('div');
       icon.src = hand.icon;
       icon.alt = hand.name;
-      icon.classList.add('icon', hand.name);
+      iconContainer.classList.add('icon', hand.name);
       if (parentNode === jugadaUser) {
-        icon.addEventListener('click', () => {
+        iconContainer.classList.add('underline-animation');
+        iconContainer.addEventListener('click', (ev) => {
           const yourChoice = choices.find(
             (option) => option.name === hand.name
           );
+          ev.target.classList.add('underlined');
           const pcHand = computerChoice();
           console.log(yourChoice, pcHand);
           if (
@@ -79,10 +84,11 @@ export const rpsls = () => {
               scorePC++;
             }, 1000);
           }
+          console.log('esto pasa rapido');
         });
       }
-
-      parentNode.append(icon);
+      iconContainer.append(icon);
+      parentNode.append(iconContainer);
     }
   };
   paintIcons(jugadaUser);

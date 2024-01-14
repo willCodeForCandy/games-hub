@@ -1,3 +1,4 @@
+import { decorateHeader } from '../../components/header/header';
 import { winBanner } from '../../components/winBanner/winBanner';
 import './memotest.css';
 
@@ -18,7 +19,8 @@ let tarjetas = [];
 let score = 0;
 let lockedBoard = false;
 
-export const memotest = () => {
+export const memotest = (e) => {
+  decorateHeader(e);
   const app = document.querySelector('#app');
   app.innerHTML = '';
   const memotest = document.createElement('section');

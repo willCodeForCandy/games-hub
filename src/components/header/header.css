@@ -11,7 +11,29 @@ header nav ul li {
   cursor: pointer;
   text-align: center;
 }
+.underline-animation {
+  position: relative;
+}
+.underline-animation::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  border-bottom: 5px solid var(--highlight-color);
+  transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
 
+.underline-animation:hover::before {
+  width: 100%;
+  left: 0;
+}
+.underlined::before {
+  border-bottom: 5px solid var(--highlight-color);
+  left: 0;
+  width: 100%;
+}
 @media screen and (max-width: 600px) {
   header nav ul {
     font-size: 20px;

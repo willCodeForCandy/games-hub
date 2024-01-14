@@ -1,3 +1,4 @@
+import { decorateHeader } from '../../components/header/header';
 import { fillBoard } from '../../components/tateti/board/board';
 import { scoreBoard } from '../../components/tateti/scoreBoard/scoreBoard';
 import { winBanner } from '../../components/winBanner/winBanner';
@@ -84,4 +85,14 @@ export const addSymbol = (line, column) => {
       }
     }, 100);
   }
+};
+
+export const initTateti = (e) => {
+  decorateHeader(e);
+  makeTaTeTi();
+  fillBoard(board);
+  const choosePrompt = document.createElement('h2');
+  choosePrompt.innerText = 'Elige si juegas con X o con O';
+  choosePrompt.classList.add('eleccion');
+  document.querySelector('#board').prepend(choosePrompt);
 };

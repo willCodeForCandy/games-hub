@@ -9,5 +9,5 @@ export const winBanner = (parentNode, message = '¡Ganaste!') => {
   parentNode.append(winBanner);
   setTimeout(() => {
     winBanner.remove();
-  }, 1000);
+  }, 1500);
 };

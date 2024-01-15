@@ -27,6 +27,7 @@ export const memotest = (e) => {
   const puntaje = document.createElement('h2');
   const tablero = document.createElement('div');
   tablero.id = 'memotest';
+  score = 0;
   puntaje.innerText = `Puntaje: ${score}`;
 
   for (const imagen of piezasDesordenadas) {

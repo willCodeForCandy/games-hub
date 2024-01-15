@@ -1,0 +1,38 @@
+#rpsls > div > div {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+#rpsls .icon img {
+  width: 100%;
+  height: 100%;
+}
+#rpsls .jugador .icon {
+  cursor: pointer;
+}
+
+#rpsls .pc .icon {
+  position: relative;
+}
+
+#rpsls .pc .icon::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+#rpsls .pc .icon.underlined::before {
+  width: 100%;
+  border-bottom: 5px solid var(--highlight-color);
+  animation: underline-animation 0.5s cubic-bezier(0.075, 0.82, 0.165, 1)
+    forwards;
+}
+
+@media screen and (max-width: 600px) {
+  #rpsls .icon {
+    width: 50px;
+    height: 50px;
+  }
+}

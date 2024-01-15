@@ -3,7 +3,7 @@ import { fillBoard } from '../../components/tateti/board/board';
 import { scoreBoard } from '../../components/tateti/scoreBoard/scoreBoard';
 import { winBanner } from '../../components/winBanner/winBanner';
 import { players } from '../../data/tateti/players';
-import { empate, winCondition } from '../../functions/win';
+import { empate, winCondition } from '../../functions/tateti/win';
 import './tateti.css';
 
 const app = document.querySelector('#app');
@@ -21,7 +21,6 @@ export const makeTaTeTi = () => {
   const board$$ = document.createElement('div');
   board$$.id = 'board';
   app.append(scoreBoard(players), board$$);
-  document.body.append(app);
   board = [
     ['', '', ''],
     ['', '', ''],

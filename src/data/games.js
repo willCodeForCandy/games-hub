@@ -1,5 +1,5 @@
 import { memotest } from '../pages/memotest/memotest';
-import { rpsls } from '../pages/rpsls/rpsls';
+import { initRPSLS } from '../pages/rpsls/rpsls';
 import { initTateti } from '../pages/tic-tac-toe/tateti';
 
 export const gameList = [
@@ -13,6 +13,6 @@ export const gameList = [
   },
   {
     game: '🪨📄✂️🦎🖖',
-    function: rpsls
+    function: initRPSLS
   }
 ];

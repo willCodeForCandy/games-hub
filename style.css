@@ -22,6 +22,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@keyframes underline-animation {
+  0% {
+    width: 0;
+    left: 50%;
+  }
+  100% {
+    width: 100%;
+    left: 0;
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -34,13 +46,16 @@ body {
   color: var(--text-color-primary);
   background-color: var(--bg-color-primary);
   height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
 #app {
   font-family: 'Rubik Doodle Shadow', sans-serif;
   font-size: 2rem;
   width: 100%;
-
   padding: 2%;
   display: flex;
   flex-direction: column;

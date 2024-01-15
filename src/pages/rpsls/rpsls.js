@@ -1,39 +1,14 @@
 import { decorateHeader } from '../../components/header/header';
-import { winBanner } from '../../components/winBanner/winBanner';
-import { computerChoice } from '../../functions/computerchoice';
+import {
+  paintIcons,
+  playerBoardListeners,
+  resetScores,
+  scorePC,
+  scoreUser
+} from '../../components/rpsls/playerBoardIcons/playerBoardIcons';
 import './rpsls.css';
-const choices = [
-  {
-    name: 'rock',
-    defeats: ['scissors', 'lizard'],
-    icon: '/assets/rpsls/rock.png'
-  },
-  {
-    name: 'paper',
-    defeats: ['rock', 'spock'],
-    icon: '/assets/rpsls/paper.png'
-  },
-  {
-    name: 'scissors',
-    defeats: ['paper', 'lizard'],
-    icon: '/assets/rpsls/scissor.png'
-  },
-  {
-    name: 'lizard',
-    defeats: ['paper', 'spock'],
-    icon: '/assets/rpsls/lizard.png'
-  },
-  {
-    name: 'spock',
-    defeats: ['scissors', 'rock'],
-    icon: '/assets/rpsls/spock.png'
-  }
-];
-let scoreUser = 0;
-let scorePC = 0;
 
-export const rpsls = (e) => {
-  decorateHeader(e);
+export const rpsls = () => {
   const app = document.querySelector('#app');
   app.innerHTML = '';
   const rpsls = document.createElement('section');
@@ -53,46 +28,16 @@ export const rpsls = (e) => {
   divPC.classList.add('pc');
   puntajeUser.innerText = `Usuario: ${scoreUser}`;
   puntajePC.innerText = `Computadora: ${scorePC}`;
-  let paintIcons = (parentNode) => {
-    for (const hand of choices) {
-      const icon = document.createElement('img');
-      const iconContainer = document.createElement('div');
-      icon.src = hand.icon;
-      icon.alt = hand.name;
-      iconContainer.classList.add('icon', hand.name);
-      if (parentNode === jugadaUser) {
-        iconContainer.classList.add('underline-animation');
-        iconContainer.addEventListener('click', (ev) => {
-          const yourChoice = choices.find(
-            (option) => option.name === hand.name
-          );
-          ev.target.classList.add('underlined');
-          const pcHand = computerChoice();
-          console.log(yourChoice, pcHand);
-          if (
-            pcHand === yourChoice.defeats[0] ||
-            pcHand === yourChoice.defeats[1]
-          ) {
-            winBanner(app);
-            setTimeout(() => {
-              scoreUser++;
-            }, 1000);
-          } else if (pcHand === yourChoice.name) {
-            console.log('DRAW');
-          } else {
-            setTimeout(() => {
-              scorePC++;
-            }, 1000);
-          }
-          console.log('esto pasa rapido');
-        });
-      }
-      iconContainer.append(icon);
-      parentNode.append(iconContainer);
-    }
-  };
+
   paintIcons(jugadaUser);
   paintIcons(jugadaPC);
+  const resetButton = document.createElement('button');
+  resetButton.innerText = 'Reset scores';
+  resetButton.addEventListener('click', () => {
+    resetScores();
+    puntajeUser.innerText = `Usuario: ${scoreUser}`;
+    puntajePC.innerText = `Computadora: ${scorePC}`;
+  });
   imagenInstrucciones.src = '/assets/rpsls/rpsls.png';
   tituloInstrucciones.textContent = 'Reglas del juego:';
   textoInstrucciones.textContent =
@@ -101,6 +46,12 @@ export const rpsls = (e) => {
   divPC.append(puntajePC, jugadaPC);
   divInstrucciones.append(imagenInstrucciones, textoInstrucciones);
   instrucciones.append(tituloInstrucciones, divInstrucciones);
-  rpsls.append(divUser, divPC, instrucciones);
+  rpsls.append(divUser, divPC, resetButton, instrucciones);
   app.append(rpsls);
+};
+
+export const initRPSLS = (e) => {
+  decorateHeader(e);
+  rpsls();
+  playerBoardListeners();
 };

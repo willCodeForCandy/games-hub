@@ -35,8 +35,8 @@ export const rpsls = () => {
   resetButton.innerText = 'Reset scores';
   resetButton.addEventListener('click', () => {
     resetScores();
-    puntajeUser.innerText = `Usuario: ${scoreUser}`;
-    puntajePC.innerText = `Computadora: ${scorePC}`;
+    puntajeUser.innerText = `Usuario: 0`;
+    puntajePC.innerText = `Computadora: 0`;
   });
   imagenInstrucciones.src = '/assets/rpsls/rpsls.png';
   tituloInstrucciones.textContent = 'Reglas del juego:';

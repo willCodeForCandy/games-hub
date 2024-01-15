@@ -4,8 +4,8 @@ import { rpsls } from '../../../pages/rpsls/rpsls';
 import { winBanner } from '../../winBanner/winBanner';
 import './playerBoardIcons.css';
 
-export let scoreUser = 0;
-export let scorePC = 0;
+export let scoreUser = localStorage.getItem('userScore') ?? 0;
+export let scorePC = localStorage.getItem('computerScore') ?? 0;
 
 export const paintIcons = (parentNode) => {
   for (const hand of choices) {
@@ -38,6 +38,7 @@ export const playerBoardListeners = () => {
         setTimeout(() => {
           winBanner(app, `${yourChoice.name} beats ${pcHand}`);
           scoreUser++;
+          localStorage.setItem('userScore', scoreUser);
         }, 1000);
       } else if (pcHand === yourChoice.name) {
         setTimeout(() => {
@@ -47,6 +48,7 @@ export const playerBoardListeners = () => {
         setTimeout(() => {
           winBanner(app, `${pcHand} beats ${yourChoice.name}`);
           scorePC++;
+          localStorage.setItem('computerScore', scorePC);
         }, 1000);
       }
       setTimeout(() => {
@@ -60,4 +62,6 @@ export const playerBoardListeners = () => {
 export const resetScores = () => {
   scoreUser = 0;
   scorePC = 0;
+  localStorage.setItem('userScore', scoreUser);
+  localStorage.setItem('computerScore', scorePC);
 };

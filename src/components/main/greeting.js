@@ -1,3 +1,4 @@
+import { gameList } from '../../data/games';
 import './greeting.css';
 
 export const greetGuest = () => {
@@ -14,5 +15,9 @@ export const greetGuest = () => {
   const bienvenida = document.createElement('h1');
   bienvenida.classList.add('welcome-text');
   bienvenida.innerText = '¡A jugar!';
+  bienvenida.addEventListener(
+    'click',
+    gameList[Math.floor(Math.random() * 3)].function
+  );
   app.append(bienvenida);
 };
